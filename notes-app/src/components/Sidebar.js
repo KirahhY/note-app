@@ -1,25 +1,9 @@
 import { useState } from "react";
 
 export default function Sidebar(props){
-    const [noteCount, setNoteCount] = useState(1)
-    async function AddNote() {
-      const newNote = {
-        title: "Note " + noteCount, 
-        content: "note",
-      };
-      setNoteCount(prevNoteCount => prevNoteCount + 1)
-      const requestOptions = {
-        method: "POST", // à voir => utiliser patch (modif) ou get (get par défaut)
-        headers: { "Content-Type": "application/json" }, // à mettre dans toutes les requêtes
-        body: JSON.stringify(newNote), // pareil
-      };
-      const response = await fetch("/notes", requestOptions);
-      props.fetchNotes();
-    }
-
     return(
         <aside className="Side">
-            <button className="Button-create-note" onClick={AddNote}>
+            <button className="Button-create-note" onClick={props.AddNote}>
             +
             </button>
             {props.notes !== null

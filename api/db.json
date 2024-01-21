@@ -6,14 +6,24 @@
       "id": 1
     },
     {
-      "title": "Note 2",
-      "content": "note",
+      "title": "Note 1",
+      "content": "Écrivez ici",
       "id": 2
     },
     {
-      "title": "Note 3",
-      "content": "note",
+      "title": "Note 1",
+      "content": "Écrivez ici",
       "id": 3
+    },
+    {
+      "title": "Note 2",
+      "content": "Écrivez ici",
+      "id": 4
+    },
+    {
+      "title": "Note 3",
+      "content": "Écrivez ici",
+      "id": 5
     }
   ]
 }
