@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
+import NoteContent from "./components/NoteContent";
 
 export default function App() {
   const [notes, setNotes] = useState(null);
@@ -12,7 +13,7 @@ export default function App() {
     setNotes(data);
   }
   
-  
+// le compteur est buggé, si page refresh le compteur repart à 1
   const [noteCount, setNoteCount] = useState(1)
   async function AddNote() {
     const newNote = {
@@ -37,8 +38,15 @@ export default function App() {
 
   return (
     <div>
-      <Sidebar fetchNotes={fetchNotes} notes={notes} AddNote={AddNote}/>
-      <main className="Main"></main>
+      <Sidebar 
+        notes={notes} 
+        AddNote={AddNote}
+      />
+      <NoteContent 
+        notes={notes} 
+        AddNote={AddNote} 
+        className="Main"
+      />
     </div>
   );
 };

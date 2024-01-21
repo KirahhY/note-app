@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function Sidebar(props){
     return(
         <aside className="Side">
