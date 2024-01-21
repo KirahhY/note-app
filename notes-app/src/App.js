@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import Sidebar from "./components/Sidebar";
 
 export default function App() {
   const [notes, setNotes] = useState(null);
@@ -12,21 +13,7 @@ export default function App() {
   }
   
 
-  const [noteCount, setNoteCount] = useState(1)
-  async function AddNote() {
-    const newNote = {
-      title: "Note " + noteCount, 
-      content: "note",
-    };
-    setNoteCount(prevNoteCount => prevNoteCount + 1)
-    const requestOptions = {
-      method: "POST", // à voir => utiliser patch (modif) ou get (get par défaut)
-      headers: { "Content-Type": "application/json" }, // à mettre dans toutes les requêtes
-      body: JSON.stringify(newNote), // pareil
-    };
-    const response = await fetch("/notes", requestOptions);
-    fetchNotes();
-  };
+
 
   // s'exécute au début du programme
   useEffect(function () {
@@ -35,20 +22,8 @@ export default function App() {
 
   return (
     <div>
-      <aside className="Side">
-        <button className="Button-create-note" onClick={AddNote}>
-          +
-        </button>
-        {notes !== null
-          ? notes.map((note) => (
-              <div>
-                <h1>{note.title}</h1>
-                <h3>{note.content}</h3>
-              </div>
-            ))
-          : null}
 
-      </aside>
+      <Sidebar fetchNotes={fetchNotes} notes={notes}/>
       <main className="Main"></main>
     </div>
   );
