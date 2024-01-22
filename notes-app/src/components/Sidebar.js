@@ -13,8 +13,16 @@ export default function Sidebar(props){
                     // }`} 
                     // buggé
                     onClick={() => props.selectNote(note)}>
-                    <h1>{note.title}</h1>
-                    <h3>{note.content}</h3>
+                        <div className="Side-title-input-container">
+                            <h1>{note.title}</h1>
+                            <input 
+                                type="checkbox"     
+                                checked={props.noteChecked}
+                                onChange={props.handleChange}
+                                name="noteChecked"
+                            ></input>
+                        </div>
+                        <h3>{note.content}</h3>
                 </div>
                 ))
             : null}

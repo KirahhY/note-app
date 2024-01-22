@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import NoteContent from "./components/NoteContent";
@@ -6,6 +6,7 @@ import NoteContent from "./components/NoteContent";
 export default function App() {
   const [notes, setNotes] = useState(null);
   const [selectedNote, setSelectedNote] = useState(null);
+  const [noteChecked, SetNoteChecked] = useState(false)
 
   // save l'array notes (id, title, content) dans data 
   async function fetchNotes() {
@@ -37,6 +38,10 @@ export default function App() {
     setSelectedNote(note);
   };
 
+  function handleChange(){
+    SetNoteChecked(prevNoteChecked => !prevNoteChecked)
+  }
+
   return (
     <div className="container">
       <Sidebar 
@@ -45,6 +50,8 @@ export default function App() {
         AddNote={AddNote}
         selectNote={selectNote}
         selectedNote={selectedNote}
+        noteChecked={noteChecked}
+        handleChange={handleChange}
       />
       <NoteContent
         className="NoteContent" 

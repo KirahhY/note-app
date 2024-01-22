@@ -10,6 +10,11 @@
   background-color: #778da9;
   color: #1b263b;
 }
+
+.Side-title-input-container{
+  display: flex;
+}
+
  /* Editor */
 .Editor{
   width: 100%;
