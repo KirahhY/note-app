@@ -5,6 +5,7 @@ import NoteContent from "./components/NoteContent";
 
 export default function App() {
   const [notes, setNotes] = useState(null);
+  const [selectedNote, setSelectedNote] = useState(null);
 
   // save l'array notes (id, title, content) dans data 
   async function fetchNotes() {
@@ -30,22 +31,27 @@ export default function App() {
     fetchNotes();
   }
 
-
   // s'exécute au début du programme
   useEffect(function () {
     fetchNotes();
   }, []);
+
+  const selectNote = (note) => {
+    setSelectedNote(note);
+  };
 
   return (
     <div>
       <Sidebar 
         notes={notes} 
         AddNote={AddNote}
+        selectNote={selectNote}
       />
       <NoteContent 
         notes={notes} 
         AddNote={AddNote} 
         className="Main"
+        selectedNote={selectedNote}
       />
     </div>
   );

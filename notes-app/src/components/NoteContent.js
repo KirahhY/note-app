@@ -4,13 +4,14 @@ export default function NoteContent(props){
     console.log(props)
     return(
         <div>
-            {props.notes !== null
-                ? props.notes.map((note) => (
-                    <div>
-                        <h3>{note.content}</h3>
-                    </div>
-                    ))
-            : null}
+            {props.selectedNote ? (
+                <div>
+                <h1>{props.selectedNote.title}</h1>
+                <p>{props.selectedNote.content}</p>
+                </div>
+            ) : (
+                <p>Sélectionnez une note pour afficher son contenu.</p>
+            )}
         </div>
     )
 }

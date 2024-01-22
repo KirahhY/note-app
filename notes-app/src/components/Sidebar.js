@@ -6,7 +6,7 @@ export default function Sidebar(props){
             </button>
             {props.notes !== null
             ? props.notes.map((note) => (
-                <div>
+                <div onClick={() => props.selectNote(note)}>
                     <h1>{note.title}</h1>
                     <h3>{note.content}</h3>
                 </div>
