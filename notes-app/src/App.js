@@ -19,7 +19,6 @@ export default function App() {
       title: "Note " + (notes.length+1), 
       content: "Écrivez ici",
     };
-    setNoteCount(prevNoteCount => prevNoteCount + 1)
     const requestOptions = {
       method: "POST", // à voir => utiliser patch (modif) ou get (get par défaut)
       headers: { "Content-Type": "application/json" }, // à mettre dans toutes les requêtes
