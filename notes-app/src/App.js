@@ -41,16 +41,17 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="container">
       <Sidebar 
+      className="Sidebar"
         notes={notes} 
         AddNote={AddNote}
         selectNote={selectNote}
       />
-      <NoteContent 
+      <NoteContent
+        className="NoteContent" 
         notes={notes} 
         AddNote={AddNote} 
-        className="Main"
         selectedNote={selectedNote}
       />
     </div>
