@@ -7,12 +7,31 @@
 .Side{
   width: 300px; 
   border-right: solid 1px black; 
-  background-color: #778da9;
+  background: linear-gradient(90deg, rgb(65,90,119) 0%, rgb(119,141,169) 100%);
   color: #1b263b;
 }
 
 .Side-title-input-container{
   display: flex;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-radius: 25px;
+  width: auto;
+  justify-content: center;
+}
+
+.Side-title-input-container:hover{
+  background-color: #778da9;
+}
+
+.Side-title-input-container h1{
+  margin-right: 10px;
+}
+
+.select-theme{
+  position: fixed;
+  bottom: 10px;
+  left: 15px;
 }
 
  /* Editor */

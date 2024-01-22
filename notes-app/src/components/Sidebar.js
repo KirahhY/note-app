@@ -16,16 +16,21 @@ export default function Sidebar(props){
                         <div className="Side-title-input-container">
                             <h1>{note.title}</h1>
                             <input 
-                                type="checkbox"     
+                                type="checkbox"  
                                 checked={props.noteChecked}
                                 onChange={props.handleChange}
                                 name="noteChecked"
                             ></input>
                         </div>
-                        <h3>{note.content}</h3>
                 </div>
                 ))
             : null}
+            <select className="select-theme">
+                <option value="">--Theme--</option>
+                <option value="default">Original</option>
+                <option value="dark">Dark</option>
+                <option value="???">???</option>
+            </select>
         </aside>
     )
 }
