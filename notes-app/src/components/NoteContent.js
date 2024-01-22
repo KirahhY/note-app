@@ -1,13 +1,16 @@
-// Il faut trouver un moyen de sélectionner une note dans Sidebar et afficher le contenu ici
-
 export default function NoteContent(props){
     return(
         <div className="Editor">
             {props.selectedNote ? (
-                <div>
-                    <h1 className="Editor-title">{props.selectedNote.title}</h1>
-                    <p className="Editor-content">{props.selectedNote.content}</p>
-                </div>
+                <form>
+                    <input 
+                        className="Editor-title" 
+                        value={props.selectedNote.title} 
+                        // onChange={(event) => props.handleTitleChange(event.target.value)}
+                        onChange={(event) => props.handleTitleChange(event.target.value)}
+                    />
+                    <textarea className="Editor-content" value={props.selectedNote.content}></textarea>
+                </form>
             ) : (
                 <p className="Editor-message">Sélectionnez une note pour afficher son contenu</p>
             )}

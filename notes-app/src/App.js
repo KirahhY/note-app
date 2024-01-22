@@ -3,11 +3,14 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import NoteContent from "./components/NoteContent";
 import Navbar from "./components/Navbar";
+import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [notes, setNotes] = useState(null);
   const [selectedNote, setSelectedNote] = useState(null);
   const [noteChecked, SetNoteChecked] = useState(false)
+  const [selectedNoteTitle, setSelectedNoteTitle] = useState(null)
+  const [selectedNoteContent, setSelectedNoteContent] = useState(null)
 
   // save l'array notes (id, title, content) dans data 
   async function fetchNotes() {
@@ -30,6 +33,14 @@ export default function App() {
     fetchNotes();
   }
 
+  function handleNoteCheck(id) {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === id ? { ...note, checked: !note.checked } : note
+      )
+    );
+  }
+
   // s'exécute au début du programme
   useEffect(function () {
     fetchNotes();
@@ -43,24 +54,79 @@ export default function App() {
     SetNoteChecked(prevNoteChecked => !prevNoteChecked)
   }
 
+  async function handleTitleChange(newValue){
+    await fetch(
+      `/notes/${selectedNote.id}`,
+      {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({title: newValue})
+      }
+    )
+    fetchNotes()
+  }
+
+  // useEffect(() =>{
+  //   if(selectedNote){
+  //     setSelectedNoteTitle(selectedNote.title)
+  //     setSelectedNoteContent(selectedNote.content)
+  //   }
+  // }, [selectedNote])
+
+  // useEffect(()=> {
+  //   handleTitleChange(selectedNoteTitle)
+  // }, [selectedNoteTitle])
+
   return (
+    // <BrowserRouter>
+
+    //  <Sidebar 
+    //     className="Sidebar"
+    //     notes={notes} 
+    //     AddNote={AddNote}
+    //     selectNote={selectNote}
+    //     selectedNote={selectedNote}
+    //     noteChecked={noteChecked}
+    //     handleChange={handleNoteCheck}
+    //   />
+
+    //   <main className="Main">
+    //     <Routes>
+    //       <Route path="/" element="Sélectionner une note" />
+    //       <Route
+    //         path="/notes/:id"
+    //         element={<NoteContent
+    //                   className="NoteContent" 
+    //                   notes={notes} 
+    //                   AddNote={AddNote} 
+    //                   selectedNote={selectedNote}
+    //                 />
+    //         }
+    //       />
+
+    //       <Route path="*" element={<Navigate to="/" />} />
+    //     </Routes>
+    //   </main>
+    // </BrowserRouter>
+
     <div>
       <Navbar />
       <div className="container">
         <Sidebar 
-        className="Sidebar"
+          className="Sidebar"
           notes={notes} 
           AddNote={AddNote}
           selectNote={selectNote}
           selectedNote={selectedNote}
           noteChecked={noteChecked}
-          handleChange={handleChange}
+          handleChange={handleNoteCheck}
         />
         <NoteContent
           className="NoteContent" 
-          notes={notes} 
+          notes={notes}
           AddNote={AddNote} 
           selectedNote={selectedNote}
+          handleTitleChange={handleTitleChange}
         />
       </div>
     </div>

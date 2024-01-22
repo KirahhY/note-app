@@ -12,13 +12,15 @@ export default function Sidebar(props){
                     //     note.id === props.selectedNote.id ? "selected-note" : ""
                     // }`} 
                     // buggé
+                    key={note.id}
                     onClick={() => props.selectNote(note)}>
                         <div className="Side-title-input-container">
                             <h1>{note.title}</h1>
                             <input 
                                 type="checkbox"  
-                                checked={props.noteChecked}
-                                onChange={props.handleChange}
+                                // checked={note.checked || false}
+                                checked={note.noteChecked}
+                                onChange={() => props.handleChange(note.id)}
                                 name="noteChecked"
                             ></input>
                         </div>
