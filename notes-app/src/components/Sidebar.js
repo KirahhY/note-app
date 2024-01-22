@@ -25,12 +25,7 @@ export default function Sidebar(props){
                 </div>
                 ))
             : null}
-            <select className="select-theme">
-                <option value="">--Theme--</option>
-                <option value="default">Original</option>
-                <option value="dark">Dark</option>
-                <option value="???">???</option>
-            </select>
+
         </aside>
     )
 }

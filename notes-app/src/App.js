@@ -18,7 +18,7 @@ export default function App() {
   
   async function AddNote() {
     const newNote = {
-      title: "Note " + (notes.length+1), 
+      title: "Nouvelle note " + (notes.length+1), 
       content: "Écrivez ici",
     };
     const requestOptions = {
