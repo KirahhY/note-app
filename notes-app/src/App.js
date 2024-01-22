@@ -14,11 +14,9 @@ export default function App() {
     setNotes(data);
   }
   
-// le compteur est buggé, si page refresh le compteur repart à 1
-  const [noteCount, setNoteCount] = useState(1)
   async function AddNote() {
     const newNote = {
-      title: "Note " + noteCount, 
+      title: "Note " + (notes.length+1), 
       content: "Écrivez ici",
     };
     setNoteCount(prevNoteCount => prevNoteCount + 1)
