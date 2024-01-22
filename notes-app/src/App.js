@@ -47,6 +47,7 @@ export default function App() {
         notes={notes} 
         AddNote={AddNote}
         selectNote={selectNote}
+        selectedNote={selectedNote}
       />
       <NoteContent
         className="NoteContent" 
