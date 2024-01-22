@@ -2,6 +2,7 @@ import { useState, useEffect, useTransition } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import NoteContent from "./components/NoteContent";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   const [notes, setNotes] = useState(null);
@@ -43,22 +44,25 @@ export default function App() {
   }
 
   return (
-    <div className="container">
-      <Sidebar 
-      className="Sidebar"
-        notes={notes} 
-        AddNote={AddNote}
-        selectNote={selectNote}
-        selectedNote={selectedNote}
-        noteChecked={noteChecked}
-        handleChange={handleChange}
-      />
-      <NoteContent
-        className="NoteContent" 
-        notes={notes} 
-        AddNote={AddNote} 
-        selectedNote={selectedNote}
-      />
+    <div>
+      <Navbar />
+      <div className="container">
+        <Sidebar 
+        className="Sidebar"
+          notes={notes} 
+          AddNote={AddNote}
+          selectNote={selectNote}
+          selectedNote={selectedNote}
+          noteChecked={noteChecked}
+          handleChange={handleChange}
+        />
+        <NoteContent
+          className="NoteContent" 
+          notes={notes} 
+          AddNote={AddNote} 
+          selectedNote={selectedNote}
+        />
+      </div>
     </div>
   );
 };

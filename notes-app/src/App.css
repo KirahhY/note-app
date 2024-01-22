@@ -1,9 +1,16 @@
+.Navbar{
+  width: 100%;
+  height: 60px;
+  background-color: #1b263b;
+}
 
+/* ------------------------------- */
 .container{
   display: flex;
   height: 100vh;
 }
 
+/* Sidebar */
 .Side{
   width: 300px; 
   border-right: solid 1px black; 
