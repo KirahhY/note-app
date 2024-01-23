@@ -1,7 +1,10 @@
+import Logo from "../images/logo-note-app.png"
+
 export default function Navbar(){
+
     return(
         <div className="Navbar">
-            <img src="../images/logo-note-app.png" alt="Logo"/>
+            <img src={Logo} alt="Logo"/>
             <h1>My notes</h1>
             <select className="select-theme">
                 <option value="">--Theme--</option>
