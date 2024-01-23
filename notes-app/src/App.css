@@ -65,13 +65,20 @@
   font-weight: bold;
 }
 
+.Button-create-note{
+  background-color: transparent;
+  border: none;
+  margin: 10px 0 0 10px;
+}
+
 .Editor-message{
   text-align: center;
-  padding-top: 50vh;
+  padding-top: 30vh;
   font-size: 50px;
   font-weight: bold;
   color: #415a77;
 }
+
 
 /* .Side {
   position: fixed;

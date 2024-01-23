@@ -1,8 +1,10 @@
+import AddButton from "../images/newNote.png"
+
 export default function Sidebar(props){
     return(
         <aside className="Side">
             <button className="Button-create-note" onClick={props.AddNote}>
-                <img src="../images/newNote.png" alt="add note logo"/>
+                <img src={AddButton} alt="add note logo" width="30px"/>
             </button>
 
             {props.notes !== null
