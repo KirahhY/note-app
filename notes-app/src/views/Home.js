@@ -7,7 +7,7 @@ export default function Home(){
     const [selectedNoteId, setSelectedNoteId] = useState("")
     const [selectedNoteTitle, setSelectedNoteTitle] = useState("")
     const [selectedNoteContent, setSelectedNoteContent] = useState("")
-  
+    const sortedNotes = notes.sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
     // save l'array notes (id, title, content) dans data 
     async function fetchNotes() {
       const response = await fetch("/notes"); // get par défaut
@@ -20,6 +20,7 @@ export default function Home(){
         title: "Nouvelle note ", 
         content: "Écrivez ici",
         checked: false,
+        updatedAt: new Date(),
       };
       const requestOptions = {
         method: "POST", // à voir => utiliser patch (modif) ou get (get par défaut)
@@ -45,7 +46,7 @@ export default function Home(){
             await fetch(`/notes/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ checked: !updatedNote.checked }), // Inverse l'état actuel
+                body: JSON.stringify({ checked: !updatedNote.checked, updatedAt: new Date() }), // Inverse l'état actuel
             });
         }
     }
@@ -54,7 +55,7 @@ export default function Home(){
         // pour modifier la bonne note dans notre State
         setNotes((prevNotes) =>
             prevNotes.map((note) =>
-                note.id === id ? { ...note, title: newValue } : note
+                note.id === id ? { ...note, title: newValue, updatedAt: new Date() } : note
             )
         );
       
@@ -65,7 +66,7 @@ export default function Home(){
             await fetch(`/notes/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: newValue }), 
+                body: JSON.stringify({ title: newValue, updatedAt: new Date() }), 
             });
         }
     }
@@ -123,7 +124,7 @@ export default function Home(){
         <div>
             <div className="container">
                 <Sidebar className="Sidebar"
-                notes={notes} 
+                notes={sortedNotes} 
                 AddNote={AddNote}
                 selectNote={selectNote}
                 handleNoteChange={handleNoteCheck}
