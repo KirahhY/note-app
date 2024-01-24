@@ -44,6 +44,7 @@
   border-radius: 25px;
   width: auto;
   justify-content: center;
+  cursor: pointer;
 }
 
 .Side-title-input-container:hover{
@@ -65,10 +66,17 @@
   font-weight: bold;
 }
 
-.Button-create-note{
+.sidebar-icons{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.sidebar-icons>button{
   background-color: transparent;
   border: none;
   margin: 10px 0 0 10px;
+  cursor: pointer;
 }
 
 .Editor-message{
