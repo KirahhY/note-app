@@ -90,6 +90,16 @@ export default function Home(){
         }
     }
 
+    const deleteNote = async function (id) {
+        await fetch(
+            `/notes/${id}`,
+            {
+                method: 'DELETE',
+            }
+        )
+        fetchNotes()
+    }
+
     // s'exécute au début du programme
     useEffect(function () {
       fetchNotes();
@@ -117,6 +127,7 @@ export default function Home(){
                 AddNote={AddNote}
                 selectNote={selectNote}
                 handleNoteChange={handleNoteCheck}
+                deleteNote={deleteNote}
                 />
                 <NoteContent className="NoteContent" 
                 selectedNoteId={selectedNoteId}

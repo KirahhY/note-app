@@ -20,9 +20,6 @@ export default function NoteContent(props){
             ) : (
                 <p className="Editor-message">Sélectionnez une note pour afficher son contenu</p>
             )}
-            {/* <button className="Button-create-note" onClick={props}>
-                <img src={Bin} alt="add note logo" width="35px"/>
-            </button> */}
         </div>
     )
 }
