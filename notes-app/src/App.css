@@ -66,16 +66,10 @@
   font-weight: bold;
 }
 
-.sidebar-icons{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.sidebar-icons>button{
+.button-create-note{
   background-color: transparent;
   border: none;
-  margin: 10px 0 0 10px;
+  margin: 15px 15px;
   cursor: pointer;
 }
 

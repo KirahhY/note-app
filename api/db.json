@@ -1,22 +1,16 @@
 {
   "notes": [
     {
-      "title": "Nouvelle note 1",
-      "content": "Écrivez ici",
+      "title": "note 1",
+      "content": "Écrdsdsdsd\nJe suce des darons tous les soirs",
       "checked": true,
       "id": 1
     },
     {
-      "title": "Nouvelle note 2",
-      "content": "Écrivez ici",
-      "checked": true,
+      "title": "note",
+      "content": "Écrivez icidsdsdssdsdsdsdsdsdsdsfhfdgjhfgxjgfxjgfjgfjdsdsfsd\nfffffffffffffdsfsdfdsdsfdsfdsfsdfsdfsdfsdfds",
+      "checked": false,
       "id": 2
-    },
-    {
-      "title": "Nouvelle note 2",
-      "content": "Écrivez ici",
-      "checked": true,
-      "id": 3
     }
   ]
 }

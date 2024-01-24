@@ -3,8 +3,10 @@ import NoteContent from "../components/NoteContent";
 import Sidebar from "../components/Sidebar";
 
 export default function Home(){
-    const [notes, setNotes] = useState(null)
-    const [selectedNote, setSelectedNote] = useState(null)
+    const [notes, setNotes] = useState([])
+    const [selectedNoteId, setSelectedNoteId] = useState("")
+    const [selectedNoteTitle, setSelectedNoteTitle] = useState("")
+    const [selectedNoteContent, setSelectedNoteContent] = useState("")
   
     // save l'array notes (id, title, content) dans data 
     async function fetchNotes() {
@@ -15,7 +17,7 @@ export default function Home(){
     
     async function AddNote() {
       const newNote = {
-        title: "Nouvelle note " + (notes.length+1), 
+        title: "Nouvelle note ", 
         content: "Écrivez ici",
         checked: false,
       };
@@ -29,46 +31,84 @@ export default function Home(){
     }
 
     async function handleNoteCheck(id) {
-        // on parcours nos notes, si l'id de la note correspond à l'id de la note checkée, on inverse l'état de la propriété checked sinon on retourne juste note
+        // pour modifier la bonne note dans notre State
         setNotes((prevNotes) =>
-          prevNotes.map((note) =>
-            note.id === id ? { ...note, checked: !note.checked } : note
-          )
+            prevNotes.map((note) =>
+                note.id === id ? { ...note, checked: !note.checked } : note
+            )
         );
       
-        // Mettre à jour l'état côté serveur via une requête PATCH
+        // updateNote correspond à la note qu'on veut modif dans la db
         const updatedNote = notes.find((note) => note.id === id);
-      
+        // Pour modifier dans la db
         if (updatedNote) {
-          await fetch(`/notes/${id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ checked: !updatedNote.checked }), // Inverse l'état actuel
-          });
+            await fetch(`/notes/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ checked: !updatedNote.checked }), // Inverse l'état actuel
+            });
         }
-      }
+    }
 
-  
+    async function handleNoteTitle(id, newValue) {
+        // pour modifier la bonne note dans notre State
+        setNotes((prevNotes) =>
+            prevNotes.map((note) =>
+                note.id === id ? { ...note, title: newValue } : note
+            )
+        );
+      
+        // updateNote correspond à la note qu'on veut modif dans la db
+        const updatedNote = notes.find((note) => note.id === id);
+        // Pour modifier dans la db
+        if (updatedNote) {
+            await fetch(`/notes/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: newValue }), 
+            });
+        }
+    }
+
+    async function handleNoteContent(id, newValue) {
+        // pour modifier la bonne note dans notre State
+        setNotes((prevNotes) =>
+            prevNotes.map((note) =>
+                note.id === id ? { ...note, content: newValue } : note
+            )
+        );
+      
+        // updateNote correspond à la note qu'on veut modif dans la db
+        const updatedNote = notes.find((note) => note.id === id);
+        // Pour modifier dans la db
+        if (updatedNote) {
+            await fetch(`/notes/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: newValue }), 
+            });
+        }
+    }
+
     // s'exécute au début du programme
     useEffect(function () {
       fetchNotes();
     }, []);
   
     const selectNote = (note) => {
-      setSelectedNote(note);
+      setSelectedNoteId(note.id);
+      setSelectedNoteTitle(note.title);
+      setSelectedNoteContent(note.content);
     };
-  
-    async function handleTitleChange(newValue){
-      await fetch(
-        `/notes/${selectedNote.id}`,
-        {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({title: newValue})
-        }
-      )
-      fetchNotes()
-    }
+
+    useEffect(function () {
+        const timeoutId = setTimeout(() => {
+            handleNoteTitle(selectedNoteId, selectedNoteTitle)
+            handleNoteContent(selectedNoteId, selectedNoteContent)
+        }, 500)
+        return () => clearTimeout(timeoutId)
+    }, [selectedNoteTitle, selectedNoteContent]);
+
     return(
         <div>
             <div className="container">
@@ -76,14 +116,14 @@ export default function Home(){
                 notes={notes} 
                 AddNote={AddNote}
                 selectNote={selectNote}
-                selectedNote={selectedNote}
                 handleNoteChange={handleNoteCheck}
                 />
                 <NoteContent className="NoteContent" 
-                notes={notes}
-                AddNote={AddNote} 
-                selectedNote={selectedNote}
-                handleTitleChange={handleTitleChange}
+                selectedNoteId={selectedNoteId}
+                selectedNoteTitle={selectedNoteTitle}
+                selectedNoteContent={selectedNoteContent}
+                setSelectedNoteTitle={setSelectedNoteTitle}
+                setSelectedNoteContent={setSelectedNoteContent}
                 />
             </div>
         </div>

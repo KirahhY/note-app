@@ -4,14 +4,11 @@ import Bin from "../images/trash-bin.png"
 export default function Sidebar(props){
     return(
         <aside className="Side">
-            <div className="sidebar-icons">
-                <button className="Button-create-note" onClick={props.AddNote}>
-                    <img src={AddButton} alt="add note logo" width="40px"/>
-                </button>
-                <button className="Button-create-note" onClick={props}>
-                    <img src={Bin} alt="add note logo" width="35px"/>
-                </button>
-            </div>
+
+            <button className="button-create-note" onClick={props.AddNote}>
+                <img src={AddButton} alt="add note logo" width="40px"/>
+            </button>
+
 
             {props.notes !== null
             ? props.notes.map((note) => (
