@@ -5,10 +5,6 @@ import Sidebar from "../components/Sidebar";
 export default function Home(){
     const [notes, setNotes] = useState(null)
     const [selectedNote, setSelectedNote] = useState(null)
-    const [noteChecked, SetNoteChecked] = useState(false)
-    console.log(selectedNote)
-    // const [selectedNoteTitle, setSelectedNoteTitle] = useState(null)
-    // const [selectedNoteContent, setSelectedNoteContent] = useState(null)
   
     // save l'array notes (id, title, content) dans data 
     async function fetchNotes() {
@@ -21,6 +17,7 @@ export default function Home(){
       const newNote = {
         title: "Nouvelle note " + (notes.length+1), 
         content: "Écrivez ici",
+        checked: false,
       };
       const requestOptions = {
         method: "POST", // à voir => utiliser patch (modif) ou get (get par défaut)
@@ -30,14 +27,27 @@ export default function Home(){
       const response = await fetch("/notes", requestOptions);
       fetchNotes();
     }
-  
-    function handleNoteCheck(id) {
-      setNotes((prevNotes) =>
-        prevNotes.map((note) =>
-          note.id === id ? { ...note, checked: !note.checked } : note
-        )
-      );
-    }
+
+    async function handleNoteCheck(id) {
+        // on parcours nos notes, si l'id de la note correspond à l'id de la note checkée, on inverse l'état de la propriété checked sinon on retourne juste note
+        setNotes((prevNotes) =>
+          prevNotes.map((note) =>
+            note.id === id ? { ...note, checked: !note.checked } : note
+          )
+        );
+      
+        // Mettre à jour l'état côté serveur via une requête PATCH
+        const updatedNote = notes.find((note) => note.id === id);
+      
+        if (updatedNote) {
+          await fetch(`/notes/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ checked: !updatedNote.checked }), // Inverse l'état actuel
+          });
+        }
+      }
+
   
     // s'exécute au début du programme
     useEffect(function () {
@@ -47,10 +57,6 @@ export default function Home(){
     const selectNote = (note) => {
       setSelectedNote(note);
     };
-  
-    function handleChange(){
-      SetNoteChecked(prevNoteChecked => !prevNoteChecked)
-    }
   
     async function handleTitleChange(newValue){
       await fetch(
@@ -71,8 +77,7 @@ export default function Home(){
                 AddNote={AddNote}
                 selectNote={selectNote}
                 selectedNote={selectedNote}
-                noteChecked={noteChecked}
-                handleChange={handleNoteCheck}
+                handleNoteChange={handleNoteCheck}
                 />
                 <NoteContent className="NoteContent" 
                 notes={notes}

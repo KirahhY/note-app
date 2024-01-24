@@ -21,8 +21,8 @@ export default function Sidebar(props){
                             <input 
                                 type="checkbox"  
                                 // checked={note.checked || false}
-                                checked={note.noteChecked}
-                                onChange={() => props.handleChange(note.id)}
+                                checked={note.checked}
+                                onChange={() => props.handleNoteChange(note.id)}
                                 name="noteChecked"
                             ></input>
                         </div>

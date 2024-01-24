@@ -1,14 +1,22 @@
 {
   "notes": [
     {
-      "title": "Nouvelle note 1z",
+      "title": "Nouvelle note 1",
       "content": "Écrivez ici",
+      "checked": true,
       "id": 1
     },
     {
-      "title": "Nouvelle note 2a",
-      "content": "Ma note",
+      "title": "Nouvelle note 2",
+      "content": "Écrivez ici",
+      "checked": true,
       "id": 2
+    },
+    {
+      "title": "Nouvelle note 2",
+      "content": "Écrivez ici",
+      "checked": true,
+      "id": 3
     }
   ]
 }
