@@ -31,7 +31,7 @@
 
 /* ---------------- Sidebar --------------------- */
 .Sidebar{
-  width: 300px; 
+  width: 430px; 
   border-right: solid 1px black; 
   background: linear-gradient(90deg, rgb(65,90,119) 0%, rgb(119,141,169) 100%);
   color: #1b263b;
