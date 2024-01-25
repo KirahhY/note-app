@@ -39,7 +39,7 @@ export default function Sidebar(props){
                                 });}}>
                                 <img src={Bin} alt="delete note logo" width="30px"/>
                             </button>
-                            <h1>{note.title.substring(0,11)}</h1>
+                            <h1>{note.title.length >= 11 ? note.title.substring(0,8) + "..." : note.title}</h1>
                         </div>
                         <input className="Sidebar-checkbox"
                             type="checkbox"  
