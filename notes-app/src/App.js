@@ -1,31 +1,29 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./views/Home";
+import { useState } from "react";
 
 export default function App() {
 
+  const [theme, setTheme] = useState("default")
 
-  // useEffect(() =>{
-  //   if(selectedNote){
-  //     setSelectedNoteTitle(selectedNote.title)
-  //     setSelectedNoteContent(selectedNote.content)
-  //   }
-  // }, [selectedNote])
-
-  // useEffect(()=> {
-  //   handleTitleChange(selectedNoteTitle)
-  // }, [selectedNoteTitle])
+  function handleTheme(theme){
+    setTheme(theme)
+  }
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar 
+        theme={theme}
+        handleTheme={handleTheme}
+      />
       <main className="Main">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home theme={theme}/>} />
           <Route
             path="/notes/:id"
-            element={<Home />}
+            element={<Home theme={theme}/>}
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

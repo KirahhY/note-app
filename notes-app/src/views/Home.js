@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import NoteContent from "../components/NoteContent";
 import Sidebar from "../components/Sidebar";
 
-export default function Home(){
+export default function Home(props){
     const [notes, setNotes] = useState([])
     const [selectedNoteId, setSelectedNoteId] = useState("")
     const [selectedNoteTitle, setSelectedNoteTitle] = useState("")
     const [selectedNoteContent, setSelectedNoteContent] = useState("")
+
     const sortedNotes = notes.sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
     // save l'array notes (id, title, content) dans data 
     async function fetchNotes() {
@@ -17,8 +18,8 @@ export default function Home(){
     
     async function AddNote() {
       const newNote = {
-        title: "Nouvelle note ", 
-        content: "Écrivez ici",
+        title: "Nouvelle note", 
+        content: "",
         checked: false,
         updatedAt: new Date(),
       };
@@ -129,6 +130,7 @@ export default function Home(){
                 selectNote={selectNote}
                 handleNoteChange={handleNoteCheck}
                 deleteNote={deleteNote}
+                theme={props.theme}
                 />
                 <NoteContent className="NoteContent" 
                 selectedNoteId={selectedNoteId}
@@ -136,6 +138,7 @@ export default function Home(){
                 selectedNoteContent={selectedNoteContent}
                 setSelectedNoteTitle={setSelectedNoteTitle}
                 setSelectedNoteContent={setSelectedNoteContent}
+                theme={props.theme}
                 />
             </div>
         </div>

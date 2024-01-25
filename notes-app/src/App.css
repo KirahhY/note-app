@@ -1,4 +1,4 @@
-.Navbar{
+.Navbar-default{
   width: 100%;
   height: 60px;
   background-color: #1b263b;
@@ -8,12 +8,25 @@
   justify-content: start;
   align-items: center;
 }
-
-.Navbar>h1, .Navbar>img{
-  margin: 0 30px;
+.Navbar-dark{
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  color: #fca311;
+  font-size: small;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
-.select-theme{
+.Navbar-default>h1, .Navbar-default>img{
+  margin: 0 30px;
+}
+.Navbar-dark>h1, .Navbar-dark>img{
+  margin-left: 30px;
+}
+
+.select-theme-default{
   position: absolute;
   top: 15px;
   right: 20px;
@@ -22,22 +35,48 @@
   background-color: #e0e1dd;
   color: #1b263b;
 }
+.select-theme-dark{
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  padding: 7px;
+  font-weight: bold;
+  background-color: #d6d6d6;
+  color: #202020;
+}
 
 /* --------------- Container ------------------- */
 .container{
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 60px);
 }
 
 /* ---------------- Sidebar --------------------- */
-.Sidebar{
+.button-create-note, .button-delete-note{
+  background-color: transparent;
+  border: none;
+  margin: 15px 15px;
+  cursor: pointer;
+}
+
+.dark-mode-button{
+  filter: drop-shadow(0 0 .5px #c5c3c6);
+}
+
+.Sidebar-default{
   width: 430px; 
   border-right: solid 1px black; 
   background: linear-gradient(90deg, rgb(65,90,119) 0%, rgb(119,141,169) 100%);
   color: #1b263b;
 }
+.Sidebar-dark{
+  width: 430px;
+  border-right: solid 1px black; 
+  background-color: #333533;
+  color: #bfbfbf;
+}
 
-.Sidebar-input-container{
+.Sidebar-input-container-default, .Sidebar-input-container-dark{
   display: flex;
   justify-content: space-between;
   margin-left: 5px;
@@ -51,30 +90,34 @@
   display: flex;
 }
 
-.Sidebar-input-container:hover{
+.Sidebar-input-container-default:hover{
   background-color: #778da9;
 }
-
-/* .Sidebar-input-container h1{
-  margin-right: 10px;
-} */
+.Sidebar-input-container-dark:hover{
+  background-color: #484b48;
+}
 
 .Sidebar-checkbox{
  margin-right: 10px;
 }
 
  /* ----------------- NoteContent ----------------- */
-.Editor{
+.Editor-default{
   width: 100%;
   padding-left: 30px;
 }
+.Editor-dark{
+  width: 100%;
+  padding-left: 30px;
+  background-color: #202020;
+}
 
-.Editor>form{
+.Editor-default>form, .Editor-dark>form{
   display: flex;
   flex-direction: column;
 }
 
-.Editor-title{
+.Editor-title-default{
   color: #124559;
   font-weight: bold;
   font-size: 30px;
@@ -83,26 +126,49 @@
   margin: 30px 0 50px 0;
   outline: none;
 }
+.Editor-title-dark{
+  color: #fca311;
+  font-weight: bold;
+  font-size: 30px;
+  background: none;
+  border: none;
+  margin: 30px 0 50px 0;
+  outline: none;
+}
+.Editor-title-default::placeholder{
+  color: #415a77;
+}
 
-.Editor-content{
+.Editor-content-default{
   background: none;
   border: none;
   margin-left: 50px;
   font-size: 15px;
   outline: none;
 }
-
-.button-create-note, .button-delete-note{
-  background-color: transparent;
+.Editor-content-dark{
+  background: none;
   border: none;
-  margin: 15px 15px;
-  cursor: pointer;
+  margin-left: 50px;
+  font-size: 15px;
+  outline: none;
+  color: #c5c3c6;
+}
+.Editor-content-dark::placeholder{
+  color: #c5c3c6; 
 }
 
-.Editor-message{
+.Editor-message-default{
   text-align: center;
   padding-top: 30vh;
   font-size: 50px;
   font-weight: bold;
   color: #415a77;
+}
+.Editor-message-dark{
+  text-align: center;
+  padding-top: 30vh;
+  font-size: 50px;
+  font-weight: bold;
+  color: #c5c3c6;
 }

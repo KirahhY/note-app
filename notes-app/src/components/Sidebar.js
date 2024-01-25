@@ -4,15 +4,15 @@ import Swal from 'sweetalert2'
 
 export default function Sidebar(props){
     return(
-        <aside className="Sidebar">
+        <aside className={`Sidebar-${props.theme}`}>
 
-            <button className="button-create-note" onClick={props.AddNote}>
+            <button className="button-create-note dark-mode-button" onClick={props.AddNote}>
                 <img src={AddButton} alt="add note logo" width="40px"/>
             </button>
 
             {props.notes !== null
             ? props.notes.map((note) => (
-                <div className="Sidebar-input-container"
+                <div className={`Sidebar-input-container-${props.theme}`}
                     key={note.id}
                     onClick={() => props.selectNote(note)}>
                         <div className="Sidebar-title-bin">
@@ -38,7 +38,7 @@ export default function Sidebar(props){
                                 });}}>
                                 <img src={Bin} alt="delete note logo" width="30px"/>
                             </button>
-                            <h1>{note.title.length >= 16 ? note.title.substring(0,13) + "..." : note.title.length === 0 ? "Saisir un titre" : note.title}</h1>
+                            <h1>{note.title.length >= 16 ? note.title.substring(0,13) + "..." : note.title.length === 0 ? "Aucun titre" : note.title}</h1>
                         </div>
                         <input className="Sidebar-checkbox"
                             type="checkbox"  
