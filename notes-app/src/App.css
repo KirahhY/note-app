@@ -97,6 +97,13 @@
   background-color: #484b48;
 }
 
+.selected-container-default{
+  background-color: #778da9;
+}
+.selected-container-dark{
+  background-color: #484b48;
+}
+
 .Sidebar-checkbox{
  margin-right: 10px;
 }

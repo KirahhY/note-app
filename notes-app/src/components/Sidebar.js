@@ -6,13 +6,16 @@ export default function Sidebar(props){
     return(
         <aside className={`Sidebar-${props.theme}`}>
 
-            <button className="button-create-note dark-mode-button" onClick={props.AddNote}>
+            <button 
+                className={`button-create-note ${props.theme === "dark" ? "dark-mode-button" : ""}`} 
+                onClick={props.AddNote}
+            >
                 <img src={AddButton} alt="add note logo" width="40px"/>
             </button>
 
             {props.notes !== null
             ? props.notes.map((note) => (
-                <div className={`Sidebar-input-container-${props.theme}`}
+                <div className={`${note.id === props.selectedNoteId ? `selected-container-${props.theme}` : ""} Sidebar-input-container-${props.theme}`}
                     key={note.id}
                     onClick={() => props.selectNote(note)}>
                         <div className="Sidebar-title-bin">

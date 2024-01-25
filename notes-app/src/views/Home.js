@@ -131,6 +131,7 @@ export default function Home(props){
                 handleNoteChange={handleNoteCheck}
                 deleteNote={deleteNote}
                 theme={props.theme}
+                selectedNoteId={selectedNoteId}
                 />
                 <NoteContent className="NoteContent" 
                 selectedNoteId={selectedNoteId}
